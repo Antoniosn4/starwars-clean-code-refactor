@@ -1,6 +1,12 @@
 {
-  "devDependencies": {
-    "@eslint/js": "^9.27.0",
-    "globals": "^16.1.0"
+    "name": "starwars-api",
+    "version": "1.0.0",
+    "description": "Star Wars API Node.js Demo",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "author": "Matheus Dresch Donatelli",
+    "license": "MIT"
   }
-}
+  

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars API</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #ffe81f;
+        }
+        button {
+            background-color: #ffe81f;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #fff200;
+        }
+        .response {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #111;
+            border-radius: 10px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Star Wars API</h1>
+    <button onclick="fetchApi()">Fazer Requisição API</button>
+    <button onclick="fetchStats()">Ver Estatísticas</button>
+    <div class="response" id="output">Saída aparecerá aqui...</div>
+
+    <script>
+        async function fetchApi() {
+            const output = document.getElementById('output');
+            output.innerText = 'Buscando dados da API...';
+            try {
+                const response = await fetch('/api');
+                const text = await response.text();
+                output.innerText = text;
+            } catch (err) {
+                output.innerText = 'Erro ao buscar API: ' + err;
+            }
+        }
+
+        async function fetchStats() {
+            const output = document.getElementById('output');
+            output.innerText = 'Buscando estatísticas...';
+            try {
+                const response = await fetch('/stats');
+                const json = await response.json();
+                output.innerText = JSON.stringify(json, null, 2);
+            } catch (err) {
+                output.innerText = 'Erro ao buscar estatísticas: ' + err;
+            }
+        }
+    </script>
+</body>
+</html>
