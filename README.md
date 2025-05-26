@@ -71,4 +71,4 @@ http://localhost:3000
 
 ## Autor
 
-Refatoração realizada por [Seu Nome] como parte da atividade prática da disciplina de programação.
+Refatoração realizada por [Matheus Dresch] como parte da atividade prática da disciplina de programação.
