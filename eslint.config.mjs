@@ -3,7 +3,8 @@ import pluginJs from "@eslint/js";
 
 
 export default [
-    { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
+    { files: ["**/*.js", "**/*.mjs", "**/*.cjs"] }, 
+        languageOptions: { sourceType: "commonjs" } },
     { languageOptions: { globals: globals.browser } },
     pluginJs.configs.recommended,
     {
@@ -16,20 +17,20 @@ export default [
                     SwitchCase: 1,
                 },
             ],
-            "linebreak-style": "off",
+            "linebreak-style": ["off"],
             "max-len": ["error", 120],
             "max-lines-per-function": ["warn", 30],
             "object-curly-spacing": ["error", "always"],
-            quotes: ["error", "double"],
+            "quotes": ["error", "double"],
             "quote-props": ["error", "as-needed"],
-            semi: ["error", "always"],
+            "semi": ["error", "always"],
             "no-magic-numbers": ["error", { ignore: [0, 1] }],
             "consistent-return": "error",
             "max-lines": [
                 "error",
                 { max: 300, skipBlankLines: true, skipComments: true },
             ],
-            complexity: ["error", 5],
+            "complexity": ["error", 5],
             "max-params": ["error", 4],
             "no-duplicate-imports": "error",
             "prefer-const": "error",

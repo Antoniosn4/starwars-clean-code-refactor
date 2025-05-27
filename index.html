@@ -4,19 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars API Demo</title>
-    
-    <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="swapi.js" href="https://swapi.dev/api/">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="/swapi.js"></script>
+    <script>
+        let fetch_count = 0;
+        let err_count = 0;
+        let cache = {};
+        let debug_mode = true;
+        let timeout = 5000;
 
-.body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-                        
-.h1 { color: #FFE81F; background-color: #000; padding: 10px; }
-                        
-.button { background-color: #FFE81F; border: none; padding: 10px 20px; cursor: pointer; }
-                     
-.footer { margin-top: 50px; font-size: 12px; color: #666; }
-                       
-.pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
-    </style>
+        function fetchData() {
+            fetch_count++;
+            console.log(`Fetch count: ${fetch_count}`);
+            // Simulate API call
+            axios.get('https://swapi.dev/api/people/1/')
+                .then(response => {
+                    console.log('Data fetched:', response.data);
+                    cache['people/1'] = response.data;
+                })
+                .catch(error => {
+                    err_count++;
+                    console.error('Error fetching data:', error);
+                });
+        }
+    </script>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+   
 </head>
     <body>
                     <h1>Star Wars API Demo</h1>

@@ -39,14 +39,14 @@ async function fetchData(endpoint) {
                         console.log(`Successfully fetched data for ${endpoint}`);
                         console.log(`Cache size: ${Object.keys(cache).length}`);
                     }
-                } catch (e) {
+                } catch (error) {
                     err_count++;
-                    reject(e);
+                    reject(error);
                 }
             });
-        }).on("error", (e) => {
+        }).on("error", (error) => {
             err_count++;
-            reject(e);
+            reject(error);
         });
 
         req.setTimeout(timeout, () => {
@@ -102,7 +102,7 @@ async function executeFetch() {
         for (const p of planets.results) {
             if (p.population !== "unknown" && parseInt(p.population) > POPULATION_LIMIT &&
                 p.diameter !== "unknown" && parseInt(p.diameter) > DIAMETER_LIMIT) {
-                console.log(p.name, "- Pop:", p.population, "- Diameter:", p.diameter, "- Climate:", p.climate);
+                console.log(p.name, "Pop:", p.population, "Diameter:", p.diameter, "Climate:", p.climate);
                 if (p.films && p.films.length > 0) {
                     console.log(`  Appears in ${p.films.length} films`);
                 }
@@ -117,10 +117,10 @@ async function executeFetch() {
         console.log("\nStar Wars Films in chronological order:");
         filmList.forEach((film, i) => {
             console.log(`${i + 1}. ${film.title} (${film.release_date})`);
-            console.log(`   Director: ${film.director}`);
-            console.log(`   Producer: ${film.producer}`);
-            console.log(`   Characters: ${film.characters.length}`);
-            console.log(`   Planets: ${film.planets.length}`);
+            console.log(`Director: ${film.director}`);
+            console.log(`Producer: ${film.producer}`);
+            console.log(`Characters: ${film.characters.length}`);
+            console.log(`Planets: ${film.planets.length}`);
         });
 
         if (lastId <= MAX_VEHICLE_ID) {
@@ -144,18 +144,19 @@ async function executeFetch() {
             console.log("Total Data Size:", total_size, "bytes");
             console.log("Error Count:", err_count);
         }
-    } catch (e) {
-        console.error("Error:", e.message);
+    } catch (error();
+    ) {
+        console.error('Error' : error.message);
         err_count++;
     }
 }
 
 const args = process.argv.slice(2);
-if (args.includes("--no-debug")) {
+if (args.includes(no-debug)) {
     debug_mode = false;
 }
-if (args.includes("--timeout")) {
-    const index = args.indexOf("--timeout");
+if (args.includes(timeout)) {
+    const index = args.indexOf(timeout);
     if (index < args.length - 1) {
         timeout = parseInt(args[index + 1]);
     }
@@ -165,44 +166,7 @@ const server = http.createServer((req, res) => {
     if (req.url === "/" || req.url === "/index.html") {
         res.writeHead(STATUS_OK, { "Content-Type": "text/html" });
         res.end(`
-            <!DOCTYPE html>
-            <html>
-                <head>
-                    <title>Star Wars API Demo</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-                        h1 { color: #FFE81F; background-color: #000; padding: 10px; }
-                        button { background-color: #FFE81F; border: none; padding: 10px 20px; cursor: pointer; }
-                        .footer { margin-top: 50px; font-size: 12px; color: #666; }
-                        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
-                    </style>
-                </head>
-                <body>
-                    <h1>Star Wars API Demo</h1>
-                    <p>This page demonstrates fetching data from the Star Wars API.</p>
-                    <p>Check your console for the API results.</p>
-                    <button onclick="fetchData()">Fetch Star Wars Data</button>
-                    <div id="results"></div>
-                    <script>
-                        function fetchData() {
-                            document.getElementById('results').innerHTML = '<p>Loading data...</p>';
-                            fetch('/api')
-                                .then(res => res.text())
-                                .then(() => {
-                                    alert('API request made! Check server console.');
-                                    document.getElementById('results').innerHTML = '<p>Data fetched! Check server console.</p>';
-                                })
-                                .catch(err => {
-                                    document.getElementById('results').innerHTML = '<p>Error: ' + err.message + '</p>';
-                                });
-                        }
-                    </script>
-                    <div class="footer">
-                        <p>API calls: ${fetch_count} | Cache entries: ${Object.keys(cache).length} | Errors: ${err_count}</p>
-                        <pre>Debug mode: ${debug_mode ? "ON" : "OFF"} | Timeout: ${timeout}ms</pre>
-                    </div>
-                </body>
-            </html>
+       
         `);
     } else if (req.url === "/api") {
         executeFetch();
@@ -226,7 +190,7 @@ const server = http.createServer((req, res) => {
 
 const PORT = process.env.PORT || DEFAULT_PORT;
 server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/`);
+    console.log(`Server running at http://localhost:${3000}/`);
     console.log("Open the URL in your browser and click the button to fetch Star Wars data");
     if (debug_mode) {
         console.log("Debug mode: ON");
